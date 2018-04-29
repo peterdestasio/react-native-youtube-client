@@ -28,6 +28,31 @@ const results = 30
 
 
 class App extends Component {
+  static navigationOptions = {
+    headerStyle: {
+      backgroundColor: '#fff'
+    },
+    headerLeft: (
+      <TouchableOpacity>
+        <Image
+        style={{height: 22, width: 98, color: '#fff', marginLeft: 25}}
+        source={require('./images/youtube_logo.png')} />
+        </TouchableOpacity>
+    ),
+    headerRight: (
+      <View style={{ flexDirection: 'row', marginRight: 20}}>
+      <TouchableOpacity style={{paddingHorizontal: 5}}>
+      <Icon name='cast-connected' size={25} color={'#555'}/>
+      </TouchableOpacity>
+      <TouchableOpacity style={{paddingHorizontal: 5}}>
+      <Icon name='videocam' size={25} color={'#555'} />
+      </TouchableOpacity>
+      <TouchableOpacity style={{paddingHorizontal: 5}}>
+      <Icon name='account-circle' size={25} color={'#555'}/>
+      </TouchableOpacity>
+      </View>
+    )
+  }
 
   constructor(props){
     super(props)
