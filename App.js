@@ -34,25 +34,29 @@ class App extends Component {
     },
     headerLeft: (
       <TouchableOpacity>
-        <Image
-        style={{height: 22, width: 98, color: '#fff', marginLeft: 25}}
-        source={require('./images/youtube_logo.png')} />
-        </TouchableOpacity>
+        <Image 
+          style={{height: 22, width: 98, color: '#fff', marginLeft: 25}} 
+          source={require('./images/YouTube_logo.png')} />
+      </TouchableOpacity>
     ),
     headerRight: (
-      <View style={{ flexDirection: 'row', marginRight: 20}}>
-      <TouchableOpacity style={{paddingHorizontal: 5}}>
-      <Icon name='cast-connected' size={25} color={'#555'}/>
-      </TouchableOpacity>
-      <TouchableOpacity style={{paddingHorizontal: 5}}>
-      <Icon name='videocam' size={25} color={'#555'} />
-      </TouchableOpacity>
-      <TouchableOpacity style={{paddingHorizontal: 5}}>
-      <Icon name='account-circle' size={25} color={'#555'}/>
-      </TouchableOpacity>
+      <View style={{ flexDirection: 'row', marginRight: 20 }}>
+        <TouchableOpacity style={{paddingHorizontal: 5}}>
+          <Icon name='cast-connected' size={25} color={'#555'} />
+        </TouchableOpacity>
+        <TouchableOpacity style={{paddingHorizontal: 5}}>
+          <Icon name='videocam' size={25} color={'#555'} />
+        </TouchableOpacity>
+        <TouchableOpacity style={{paddingHorizontal: 5}}>
+          <Icon name='search' size={25} color={'#555'} />
+        </TouchableOpacity>
+        <TouchableOpacity style={{paddingHorizontal: 5}}>
+          <Icon name='account-circle' size={25} color={'#555'}/>
+        </TouchableOpacity>
       </View>
     )
   }
+
 
   constructor(props){
     super(props)
@@ -82,36 +86,58 @@ class App extends Component {
     const {navigate} = this.props.navigation
     return (
       <View style={styles.container}>
-      <ScrollView>
-        <View style={styles.body}>
-        {this.state.data.map((item, i) =>
-        <TouchableHighlight
-        key={item.id.videoId}
-        onPress={()=> navigate('YouTubeVideo', {youtubeId: item.id.videoId})}>
-        <View style={styles.vids}>
-          <Image
-          source={{uri: item.snippet.thumbnails.medium.url}}
-          style={{width: 320, height: 180}}/>
-          <View stule={styles.vidItems}>
-          <Image
-          source={require('./images/NightKing.png')}
-          style={{width: 40, height: 40, borderRadius: 20, marginRight: 5}}/>
-          <Text style= {styles.vidText}>{item.snippet.title}</Text>
-          <Icon name='more-vert' size={20} color='#555'/>
+        <ScrollView>
+          <View style={styles.body}>
+            {this.state.data.map((item, i) => 
+           	<TouchableHighlight 
+              key={item.id.videoId} 
+              onPress={() => navigate('YouTubeVideo', {youtubeId: item.id.videoId})}>
+              <View style={styles.vids}>
+                <Image 
+                  source={{uri: item.snippet.thumbnails.medium.url}} 
+                  style={{width: 320, height: 180}}/>
+                <View style={styles.vidItems}>
+                  <Image 
+                    source={require('./images/NightKing.png')} 
+                    style={{width: 40, height: 40, borderRadius: 20, marginRight: 5}}/>
+                  <Text style={styles.vidText}>{item.snippet.title}</Text>
+                  <Icon name='more-vert' size={20} color='#555'/> 
+                </View>
+              </View>
+            </TouchableHighlight>
+            )}
           </View>
-          </View>
-          </TouchableHighlight>
-    )}
-        </View>
         </ScrollView>
-      </View>
-    );
+        <View style={styles.tabBar}>
+          <TouchableOpacity style={styles.tabItems}>
+            <Icon name='home' size={25} color='#444'/>
+            <Text style={styles.tabTitle}>Home</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.tabItems}>
+            <Icon name='whatshot' size={25} color='#444'/>
+            <Text style={styles.tabTitle}>Trending</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.tabItems}>
+            <Icon name='subscriptions' size={25} color='#444'/>
+            <Text style={styles.tabTitle}>Subscriptions</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.tabItems}>
+            <Icons name='bell' size={25} color='#444'/>
+            <Text style={styles.tabTitle}>Activity</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.tabItems}>
+            <Icon name='folder' size={25} color='#444'/>
+            <Text style={styles.tabTitle}>Library</Text>
+          </TouchableOpacity>
+        </View>
+	    </View>
+    )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   body: {
     flex: 1,
@@ -138,9 +164,28 @@ const styles = StyleSheet.create({
     padding: 20,
     color: '#000'
   },
-});
+  tabBar: {
+    backgroundColor: '#fff',
+    height: 70,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    borderTopWidth: 0.5,
+    borderColor: '#bbb'
+  },
+  tabItems: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: 5
+  },
+  tabTitle: {
+    fontSize: 11,
+    color: '#333',
+    paddingTop: 4,
+    textDecorationLine: 'underline'
+  }
+})
 
 export default screens = StackNavigator({
-  Home: {screen: App},
+  Home: { screen: App },
   YouTubeVideo: { screen: YouTubeVideo }
 })

@@ -1,7 +1,7 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { StackNavigator } from 'react-navigation'
-import YouTube from 'react-native-youtube'
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+import YouTube from 'react-native-youtube';
 
 export default class YouTubeVideo extends React.Component{
     static navigationOptions = {
@@ -10,7 +10,7 @@ export default class YouTubeVideo extends React.Component{
             backgroundColor: '#000'
         }, 
         headerTitleStyle: {
-            color: '#fff'
+            color: '#ffffff'
         }
     }
 
@@ -22,7 +22,7 @@ export default class YouTubeVideo extends React.Component{
                 play={true}             
                 fullscreen={true}       
                 loop={false}            
-                apiKey={'AIzaSyBJ3ntReiv0L19H2RoYW62LpRdIuyPhIpw'}
+                apiKey={'AIzaSyBLdXRr4xpCP8KD4DtVFIzpSawC3YPE440'}
                 onReady={e => this.setState({ isReady: true })}
                 onChangeState={e => this.setState({ status: e.state })}
                 onChangeQuality={e => this.setState({ quality: e.quality })}
@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff'
+        backgroundColor: '#ffffff'
     }
 })
